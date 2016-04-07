@@ -19,12 +19,8 @@ def flatten(data, prefix = ''):
 			x = flatten(value, prefix = prefix + key + NESTING_SEP)
 			flattened.update(x)
 		elif type(value) is list:
-			for index, element in enumerate(value):
-				if type(element) is dict or type(element) is list:
-					x = flatten(element, prefix = prefix + key + NESTING_SEP + str(index) + NESTING_SEP)
-					flattened.update(x)
-				else:
-					flattened[prefix + key + NESTING_SEP + str(index)] = encode(element)
+			x = flatten(dict(zip(map(str, range(len(value))), value)), prefix = prefix + key + NESTING_SEP)
+			flattened.update(x)
 		else:
 			flattened[prefix + key] = encode(value)
 
