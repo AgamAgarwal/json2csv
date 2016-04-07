@@ -8,7 +8,7 @@ NESTING_SEP = '/'
 FIELD_SEP = '\t'
 
 def encode(s):
-	return s.replace('\n', ' ').encode('utf-8') if type(s) is not int else s
+	return s.replace('\n', ' ').encode('utf-8') if type(s) not in [int, long, float] else s
 
 def flatten(data, prefix = ''):
 	flattened = {}
